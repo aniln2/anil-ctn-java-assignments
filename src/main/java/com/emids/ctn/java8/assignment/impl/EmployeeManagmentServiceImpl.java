@@ -22,26 +22,26 @@ public class EmployeeManagmentServiceImpl implements EmployeeManagmentService {
 	}
 
 	@Override
-	public Map<String, List<Employee>> getEmployeesGroupByDept() {
-		System.out.println("getEmployeesGroupByDept ");
-		return employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.toList()));
+	public List<Employee> getEmployeesWithDept(String dept) {
+		System.out.println("Create a method with one parameter department and print the list of employees in that department ");
+		return employeeList.stream().filter(emp -> emp.getDepartment().equals(dept)).collect(Collectors.toList());
 	}
-
+	
 	@Override
 	public Double getTotalSalary() {
-		System.out.println("getTotalSalary ");
+		System.out.println("Create a method to print the total Salaries of all employees ");
 		return employeeList.stream().collect(Collectors.summingDouble(Employee::getSalary));
 	}
 
 	@Override
 	public Employee getEmployeesByHighestSal() {
-		System.out.println("getEmployeesByHighestSal ");
+		System.out.println("Create a method to print the employee with the highest salary ");
 		return employeeList.stream().collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))).get();
 	}
 
 	@Override
 	public List<Employee> sortEmployeeByDeptDecreasingSal() {
-		System.out.println("sortEmployeeByDeptDecreasingSal ");
+		System.out.println("Create a method to sort and Print the List of employees by Department and then sort based on the decreasing order of their salaries  ");
 		List<Employee> empListGrpByDept = employeeList.stream().sorted(Comparator.comparing(Employee::getDepartment))
 				.toList();
 		System.out.println("empListGrpByDept " + empListGrpByDept);
@@ -54,36 +54,38 @@ public class EmployeeManagmentServiceImpl implements EmployeeManagmentService {
 
 	}
 
+
+	@Override
+	public Map<String, List<Employee>> getEmployeesGroupByDept() {
+		System.out.println("Create a method to print the list of employees per department in a Map structure ");
+		return employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.toList()));
+	}
+	
 	@Override
 	public Map<String, Long> getTotalEmployeePerDept() {
-		System.out.println("getTotalEmployeePerDept ");
+		System.out.println("Create a method to count total employees per department ");
 		return employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
 	}
 
 	@Override
 	public Map<String, Double> getAvgSalaryPerDept() {
-		System.out.println("getAvgSalaryPerDept ");
+		System.out.println("Create a method to print average salaries per department ");
 		return employeeList.stream().collect(
 				Collectors.groupingBy(Employee::getDepartment, Collectors.averagingDouble(Employee::getSalary)));
 	}
 
 	@Override
 	public List<Employee> getFirstFiveEmployees() {
-		System.out.println("getFirstFiveEmployees ");
-		return employeeList.stream().limit(3).collect(Collectors.toList());
+		System.out.println("Create a method to print the first 5 employees of the list ");
+		return employeeList.stream().limit(5).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Employee> getEmployeesInRange() {
-		System.out.println("getEmployeesInRange ");
+		System.out.println("Create a method to print the employees from 2nd index to 5th index  ");
 		return employeeList.stream().filter(emp -> employeeList.indexOf(emp) >= 2 && employeeList.indexOf(emp) < 5)
 				.collect(Collectors.toList());
 	}
 
-	@Override
-	public List<Employee> getEmployeesWithDept(String dept) {
-		System.out.println("getEmployeesWithDept ");
-		return employeeList.stream().filter(emp -> emp.getDepartment().equals(dept)).collect(Collectors.toList());
-	}
 
 }
