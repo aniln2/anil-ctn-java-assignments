@@ -83,8 +83,8 @@ public class EmployeeManagmentServiceImpl implements EmployeeManagmentService {
 	@Override
 	public List<Employee> getEmployeesInRange() {
 		System.out.println("Create a method to print the employees from 2nd index to 5th index  ");
-		return employeeList.stream().filter(emp -> employeeList.indexOf(emp) >= 2 && employeeList.indexOf(emp) < 5)
-				.collect(Collectors.toList());
+		System.out.println("The complete list .."+employeeList);
+		return employeeList.stream().skip(2).limit(3).collect(Collectors.toList());
 	}
 
 

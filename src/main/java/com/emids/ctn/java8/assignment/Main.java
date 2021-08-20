@@ -1,7 +1,11 @@
 package com.emids.ctn.java8.assignment;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import com.emids.ctn.java8.assignment.data.Employee;
 import com.emids.ctn.java8.assignment.iface.EmployeeManagmentService;
@@ -47,7 +51,26 @@ public class Main {
 		Map<String, List<Employee>> employeeGrpByDept = employeeManagmentService.getEmployeesGroupByDept();
 		System.out.println(employeeGrpByDept);
 
-
+		List<String> lists= new ArrayList<>();
+		lists.add("1");
+		lists.add("2");
+		lists.add("3");
+		lists.add(0, "3");
+		lists.add(1, "4");
+		synchronized (lists) {
+			System.out.println("hi");
+			
+		}
+		System.out.println("**************************");
+		System.out.println(LocalTime.now());
+		
+		Supplier<String> sup=()->"CAR";
+		Consumer<String> c= x->System.out.println(x.toLowerCase());
+		Consumer<String> d= x->System.out.println(x.toUpperCase());
+		c.andThen(d).accept(sup.get());
+		System.out.println();
+		
+;
 	}
 
 }

@@ -3,8 +3,11 @@ package com.emids.ctn.java8.assignment.iface;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.emids.ctn.java8.assignment.data.Employee;
 
+@Repository
 public interface EmployeeManagmentService {
 
 	List<Employee> getEmployeesWithDept(String dept);
