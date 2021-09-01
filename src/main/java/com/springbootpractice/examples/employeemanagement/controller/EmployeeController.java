@@ -22,12 +22,12 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
-	@GetMapping("/getallemployees")
+	@GetMapping("/allemployees")
 	public List<Employee> getAllEmployee() {
 		return employeeService.getAllEmployees();
 	}
 
-	@GetMapping("/getemployee/{id}")
+	@GetMapping("/employee/{id}")
 	public ResponseEntity<Employee> getEmployee(@PathVariable("id") String id) {
 		return employeeService.getEmployeeById(id);
 	}
